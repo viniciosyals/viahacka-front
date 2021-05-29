@@ -95,13 +95,13 @@ const doughnut = {
         const cw = canvas.offsetWidth;
         const ch = canvas.offsetHeight;
         const cx = cw / 2;
-        const cy = ch - 6;
+        const cy = ch - (ch / 4);
         
         ctx.translate(cx, cy);
         ctx.rotate(angle);
         ctx.beginPath();
         ctx.moveTo(0, -3);
-        ctx.lineTo(ch - 10, 0);
+        ctx.lineTo(ch / 2.3, 0);
         ctx.lineTo(0, 3);
         ctx.fillStyle = "rgb(0, 0, 0)";
         ctx.fill();
@@ -149,7 +149,7 @@ const App = () => {
             <Line type="line" data={linear.data} options={linear.options} />
           </Card.Body>
         </Card>
-        <Card>
+        <Card col="span-1">
           <Card.Title>
             Card xxx
           </Card.Title>
