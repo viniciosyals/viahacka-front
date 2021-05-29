@@ -70,16 +70,15 @@ const bar = {
 };
 
 const doughnut = {
-  labels: ['Red', 'Blue', 'Yellow'],
+  labels: ['Ruim', 'Bom', 'Excelente'],
   datasets: [
     {
-      label: '# of Votes',
       data: [33.33, 33.33, 33.33],
-      needleValue: 100,
+      needleValue: 44,
       backgroundColor: [
-        'rgba(255, 99, 132, 0.2)',
-        'rgba(54, 162, 235, 0.2)',
-        'rgba(255, 206, 86, 0.2)',
+        '#ff502d',
+        '#ffdc42',
+        '#a2dd21',
       ],
     },
   ],
@@ -88,27 +87,29 @@ const doughnut = {
       afterDraw: (chart: any) => {
         const { ctx, config, canvas } = chart;
         const { needleValue, data } = config.data.datasets[0];
-        const { top, height } = chart.chartArea;
-        const y = top + height / 2;
         const dataTotal = data.reduce((a: any, b: any) => a + b, 0);
         const angle = Math.PI + (1 / dataTotal) * needleValue * Math.PI;
         const cw = canvas.offsetWidth;
         const ch = canvas.offsetHeight;
         const cx = cw / 2;
-        const cy = ch - (ch / 4);
+        const cy = ch - (ch / 4) + 13;
+        const lineLength = 3;
         
         ctx.translate(cx, cy);
         ctx.rotate(angle);
         ctx.beginPath();
-        ctx.moveTo(0, -3);
-        ctx.lineTo(ch / 2.3, 0);
-        ctx.lineTo(0, 3);
-        ctx.fillStyle = "rgb(0, 0, 0)";
+        ctx.moveTo(0, -lineLength);
+        ctx.lineTo(ch / 2.5, 0);
+        ctx.lineTo(0, lineLength);
+        const needleGradient = ctx.createLinearGradient(0, 210, 210, 0);
+        needleGradient.addColorStop(0, '#6a5aff');
+        needleGradient.addColorStop(1, '#00d3c3');
+        ctx.fillStyle = needleGradient;
         ctx.fill();
         ctx.rotate(-angle);
         ctx.translate(-cx, -cy);
         ctx.beginPath();
-        ctx.arc(cx, cy, 5, 0, Math.PI * 2);
+        ctx.arc(cx, cy, lineLength + 2, 0, Math.PI * 2);
         ctx.fill();
       },
     }
