@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Chart, Bar, Line, Doughnut } from 'react-chartjs-2';
 import { Card } from './components';
 import './App.css';
+import { colors } from './constants';
 
 const linear = {
   data: {
@@ -11,22 +12,44 @@ const linear = {
         label: '# of Votes',
         data: [12, 19, 3, 5, 2, 3],
         fill: false,
-        backgroundColor: 'rgb(255, 99, 132)',
-        borderColor: 'rgba(255, 99, 132, 0.2)',
+        backgroundColor: colors.primary,
+        borderColor: (context: any) => {
+          const { chart } = context;
+          const {ctx, chartArea} = chart;
+          
+          if (!chartArea) {
+            return null;
+          }
+          return getGradient(ctx, chartArea);
+        },
       },
     ],
   },
   options: {
-    scales: {
-      yAxes: [
-        {
-          ticks: {
-            beginAtZero: true,
-          },
-        },
-      ],
-    },
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top',
+      },
+    }
   },
+}
+
+function getGradient(ctx: any, chartArea: any) {
+  let width = 0;
+  let height = 0;
+  let gradient = null;
+  const chartWidth = chartArea.right - chartArea.left;
+  const chartHeight = chartArea.bottom - chartArea.top;
+  if (width !== chartWidth || height !== chartHeight) {
+    width = chartWidth;
+    height = chartHeight;
+    gradient = ctx.createLinearGradient(0, chartArea.bottom, 0, chartArea.top);
+    gradient.addColorStop(0, colors.primary);
+    gradient.addColorStop(1, colors.secondary);
+  }
+
+  return gradient;
 }
 
 const bar = {
@@ -35,22 +58,22 @@ const bar = {
     datasets: [
       {
         label: '# of Votes',
-        data: [12, 19, 3],
+        data: [12, 19, 3, 15, 7, 10],
         backgroundColor: [
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(255, 206, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(153, 102, 255, 0.2)',
-          'rgba(255, 159, 64, 0.2)',
+          colors.transparentInfo,
+          colors.transparentPrimary,
+          colors.transparentSecondary,
+          colors.transparentError,
+          colors.transparentSuccess,
+          colors.transparentWarning,
         ],
         borderColor: [
-          'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(75, 192, 192, 1)',
-          'rgba(153, 102, 255, 1)',
-          'rgba(255, 159, 64, 1)',
+          colors.info,
+          colors.primary,
+          colors.secondary,
+          colors.error,
+          colors.success,
+          colors.warning,
         ],
         borderWidth: 1,
       },
@@ -76,9 +99,9 @@ const doughnut = {
       data: [33.33, 33.33, 33.33],
       needleValue: 44,
       backgroundColor: [
-        '#ff502d',
-        '#ffdc42',
-        '#a2dd21',
+        colors.transparentError,
+        colors.transparentWarning,
+        colors.transparentSuccess,
       ],
     },
   ],
