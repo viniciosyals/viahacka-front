@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { Chart, Bar, Line, Doughnut } from 'react-chartjs-2';
+import { Chart, Line, Doughnut, Bubble } from 'react-chartjs-2';
 import { Card } from './components';
 import './App.css';
 import { colors } from './constants';
 
 const linear = {
   data: {
-    labels: ['1', '2', '3', '4', '5', '6'],
+    labels: ['1', '2', '3', '4', '5', '6', '7'],
     datasets: [
       {
-        label: '# of Votes',
-        data: [12, 19, 3, 5, 2, 3],
+        label: 'Classificação das avaliações',
+        data: [12, 19, 3, 5, 2, 3, 20],
         fill: false,
         backgroundColor: colors.primary,
         borderColor: (context: any) => {
@@ -52,43 +52,97 @@ function getGradient(ctx: any, chartArea: any) {
   return gradient;
 }
 
-const bar = {
+const bubble = {
   data: {
-    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-    datasets: [
-      {
-        label: '# of Votes',
-        data: [12, 19, 3, 15, 7, 10],
-        backgroundColor: [
-          colors.transparentInfo,
-          colors.transparentPrimary,
-          colors.transparentSecondary,
-          colors.transparentError,
-          colors.transparentSuccess,
-          colors.transparentWarning,
-        ],
-        borderColor: [
-          colors.info,
-          colors.primary,
-          colors.secondary,
-          colors.error,
-          colors.success,
-          colors.warning,
-        ],
-        borderWidth: 1,
-      },
-    ],
+    type: 'bubble',
+    datasets: [{
+      label: ["Produto não enviado"],
+      backgroundColor: colors.transparentPrimary,
+      borderColor: colors.primary,
+      title: "dataTitle1",
+      data: [{
+        x: 20,
+        y: 3,
+        r: 15
+      }]
+    }, {
+      label: ["Produto com avaria"],
+      backgroundColor: colors.transparentSecondary,
+      borderColor: colors.secondary,
+      title: "dataTitle2",
+      data: [{
+        x: 30,
+        y: 2,
+        r: 10
+      }]
+    }, {
+      label: ["Mal atendimento"],
+      backgroundColor: colors.transparentWarning,
+      borderColor: colors.warning,
+      title: "dataTitle3",
+      data: [{
+        x: 8,
+        y: 1,
+        r: 15
+      }]
+    }]
   },
   options: {
     scales: {
-      yAxes: [
-        {
-          ticks: {
-            beginAtZero: true,
-          },
-        },
-      ],
-    },
+      y: {
+          beginAtZero: true
+      },
+      x: {
+        beginAtZero: true
+      }
+    }
+  }
+};
+
+const bubble2 = {
+  data: {
+    type: 'bubble',
+    datasets: [{
+      label: ["Celular"],
+      backgroundColor: colors.transparentPrimary,
+      borderColor: colors.primary,
+      title: "dataTitle1",
+      data: [{
+        x: 18,
+        y: 5.245,
+        r: 15
+      }]
+    }, {
+      label: ["Óculos"],
+      backgroundColor: colors.transparentSecondary,
+      borderColor: colors.secondary,
+      title: "dataTitle2",
+      data: [{
+        x: 5,
+        y: 7.526,
+        r: 10
+      }]
+    }, {
+      label: ["Roupas"],
+      backgroundColor: colors.transparentWarning,
+      borderColor: colors.warning,
+      title: "dataTitle3",
+      data: [{
+        x: 7,
+        y: 6.994,
+        r: 15
+      }]
+    }, {
+      label: ["Notebook"],
+      backgroundColor: colors.transparentInfo,
+      borderColor: colors.info,
+      title: "dataTitle4",
+      data: [{
+        x: 2,
+        y: 5.921,
+        r: 15
+      }]
+    }]
   }
 };
 
@@ -156,42 +210,59 @@ const App = () => {
 
   return (
     <div className="container mx-auto">
+      <div>
+        Olá, vendedor!
+        <br />
+        <br />Fizemos uma análise nos seus pedidos! Veja os seus resultados:
+      </div>
       <div className="grid grid-cols-4 gap-8 mt-8">
-        <Card col="span-2">
+      <Card col="span-1">
           <Card.Title>
-            Card xxx
-          </Card.Title>
-          <Card.Body>
-            <Bar type="bar" data={bar.data} options={bar.options} />
-          </Card.Body>
-        </Card>
-        <Card col="span-2">
-          <Card.Title>
-            Card xxx
-          </Card.Title>
-          <Card.Body>
-            <Line type="line" data={linear.data} options={linear.options} />
-          </Card.Body>
-        </Card>
-        <Card col="span-1">
-          <Card.Title>
-            Card xxx
+            Visão geral dos pedidos
           </Card.Title>
           <Card.Body>
             <Doughnut type="doughnut" data={doughnut} options={doughnut.options} plugins={doughnut.plugins} />
+            <div>
+              Classificação: Boa<br />
+              <br />Nos próximos 7 dias, cerca de 8% dos seus pedidos estão com alta probabilidade de dar algum tipo de problema.
+            </div>
           </Card.Body>
         </Card>
-        <Card>
+        <Card col="span-3">
           <Card.Title>
-            Card xxx
+            Média de avaliações nos últimos sete dias
           </Card.Title>
           <Card.Body>
-            asdasdsad
+            <Line type="line" data={linear.data} options={linear.options} />
+            Aumento de 9% nos últimos sete dias
           </Card.Body>
         </Card>
-        <Card>
+        <Card col="span-2">
           <Card.Title>
-            Card xxx
+            Principais motivos de cancelamento
+          </Card.Title>
+          <Card.Body>
+            <Bubble type="bubble" data={bubble.data} options={bubble.options} />
+            <div>
+              Dicas:
+              <br />- Seu cliente está esperando pelo seu produto, envie-o ou cancele o pedido.
+              <br />-  Proteja seu produto ao embalá-lo;
+              <br />- Procure sempre responder as dúvidas.
+            </div>
+          </Card.Body>
+        </Card>
+        <Card col="span-2">
+          <Card.Title>
+            Principais categorias de pedidos com problemas
+          </Card.Title>
+          <Card.Body>
+          <Bubble type="bubble" data={bubble2.data} options={bubble.options} />
+          Essas são suas categorias com maior índice de atritos.
+          </Card.Body>
+        </Card>
+        <Card col="span-4">
+          <Card.Title>
+            Pedidos críticos
           </Card.Title>
           <Card.Body>
             asdasdsad
