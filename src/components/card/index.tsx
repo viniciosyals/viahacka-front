@@ -36,7 +36,7 @@ const Spinner = styled.svg.attrs({
 `;
 
 Card.Body = ({ children, loading, full }: any) => (
-  <div className="relative">
+  <div className="relative card-min-height">
     {loading ? <Spinner /> : ''}
     <div className={`${full ? '' : 'p-4'} ${loading ? `invisible` : ''}`}>
       {children}

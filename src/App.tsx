@@ -6,7 +6,10 @@ const App = () => {
   const [sellers, setSellers] = useState<any[]>([]);
   const [seller, setSeller] = useState<any>();
   const [loading, setLoading] = useState(false);
-  const [criticalOrders, setCriticalOrders] = useState<any[]>([]);
+  const [velocimetro, setVelocimetro] = useState(0);
+  const [ultimasAvaliacoes, setUltimasAvaliacoes] = useState<any[]>([]);
+  const [categorias, setCategorias] = useState<any[]>([]);
+  const [pedidos, setPedidos] = useState<any[]>([]);
 
   const handlerSeller = (sellerObj: any) => {
     setSeller(sellerObj.seller);
@@ -14,7 +17,10 @@ const App = () => {
 
   useEffect(() => {
     (async () => {
-      setSellers(['00000', '00001']);
+      setLoading(true);
+      // const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${30}`);
+      // const data = await response.json();
+      // etSellers(data);
     })();
   }, []);
 
@@ -23,19 +29,12 @@ const App = () => {
       setLoading(true);
       // const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${30}`);
       // const data = await response.json();
-      setCriticalOrders([
-        {
-          id: 0,
-          idCompra: 0,
-          classificacao: 'xx',
-          score: 3
-        }, {
-          id: 1,
-          idCompra: 2,
-          classificacao: 'aaaaa',
-          score: 7
-        }
-      ])
+      /*
+      setVelocimetro(data.velocimetro);
+      setUltimasAvaliacoes(data.ultimasAvaliacoes);
+      setCategorias(data.categorias);
+      setPedidos(data.pedidos);*
+      */
       setLoading(false);
     })();
   }, [seller]);
@@ -152,7 +151,7 @@ const App = () => {
                 Pedidos críticos
             </Card.Title>
               <Card.Body loading={loading} full>
-                <Table data={criticalOrders} />
+                <Table data={ultimasAvaliacoes} />
               </Card.Body>
             </Card>
           </div>
