@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Navbar, Card, Linear, Speedometer, BubbleCh, Table } from './components';
+import { Navbar, Card, Linear, Speedometer, BubbleCh, Table, Bar } from './components';
 import './App.css';
 
 const App = () => {
@@ -100,33 +100,28 @@ const App = () => {
               <Card.Title>
                 Principais motivos de cancelamento
             </Card.Title>
-              <Card.Body loading={loading}>
-                <BubbleCh data={[
-                  {
-                    label: "Produto não enviado",
-                    x: 20,
-                    y: 3,
-                    r: 15
-                  }, {
-                    label: "Produto não recebido",
-                    x: 4,
-                    y: 7,
-                    r: 4
-                  },
-                ]}>
-                  <div className="mt-4 text-base text-gray-500">Dicas:
+            <Card.Body loading={loading}>
+              <Bar data={[
+                {
+                  category: "Entrega",
+                  quantity: 90
+                }, {
+                  category: "Arrependimento",
+                  quantity: 50,
+                }]}>
+                <div className="mt-4 text-base text-gray-500">Dicas:
                   <ul className="mt-4 list-disc ml-6">
-                      <li>Seu cliente está esperando pelo seu produto, envie-o ou cancele o pedido.</li>
-                      <li>Proteja seu produto ao embalá-lo;</li>
-                      <li>Procure sempre responder as dúvidas.</li>
-                    </ul>
-                  </div>
-                </BubbleCh>
-              </Card.Body>
-            </Card>
-            <Card col="span-2">
-              <Card.Title>
-                Principais categorias de pedidos com problemas
+                    <li>Seu cliente está esperando pelo seu produto, envie-o ou cancele o pedido.</li>
+                    <li>Proteja seu produto ao embalá-lo;</li>
+                    <li>Procure sempre responder as dúvidas.</li>
+                  </ul>
+                </div>
+              </Bar>
+            </Card.Body>
+          </Card>
+          <Card col="span-2">
+            <Card.Title>
+              Principais categorias de pedidos com problemas
             </Card.Title>
               <Card.Body loading={loading}>
                 <BubbleCh data={[
