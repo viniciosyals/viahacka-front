@@ -15,5 +15,6 @@ module.exports = {
     transparentWarning: 'rgba(255, 220, 66, 0.7)',
     transparentError: 'rgba(255, 80, 45, 0.7)',
     gradient: 'linear-gradient(45deg, #6a5aff 0%, #00d3c3 100%)',
+    darkestNeutral: '#202121',
   }
 }

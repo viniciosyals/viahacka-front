@@ -46,7 +46,7 @@ const App = () => {
       <div className="container mx-auto mb-8">
         <div className="mt-4">
           <div className="text-lg">Olá, <span className="font-semibold">Vendedor!</span></div>
-          <div className="text-base text-gray-500">Fizemos uma análise nos seus pedidos! Veja os seus resultados:</div>
+          <div className="mt-2 text-base text-gray-500">Fizemos uma análise nos seus pedidos! Veja os seus resultados:</div>
         </div>
         <div className="grid grid-cols-4 gap-8 mt-4">
           <Card col="span-1">
@@ -55,9 +55,11 @@ const App = () => {
             </Card.Title>
             <Card.Body loading={loading}>
               <Speedometer data={44}>
-                <div>
-                  Classificação: Boa<br />
-                  <br />Nos próximos 7 dias, cerca de 8% dos seus pedidos estão com alta probabilidade de dar algum tipo de problema.
+                <div className="max-w-2xl text-xl text-gray-500 lg:mx-auto">
+                  Classificação: Boa
+                </div>
+                <div className="mt-3 text-base text-gray-500">
+                  Nos próximos 7 dias, cerca de 8% dos seus pedidos estão com alta probabilidade de dar algum tipo de problema.
                 </div>
               </Speedometer>
             </Card.Body>
@@ -90,7 +92,7 @@ const App = () => {
                   label: '00/00/0000',
                   number: 20
                 }]}>
-                  Aumento de 9% nos últimos sete dias
+                <div className="mt-4 text-base text-gray-500"> Aumento de 9% nos últimos sete dias</div>
               </Linear>
             </Card.Body>
           </Card>
@@ -112,12 +114,13 @@ const App = () => {
                   r: 4
                 }, 
               ]}>
-                Dica:
-                <ul className="list-disc ml-6">
-                  <li>Seu cliente está esperando pelo seu produto, envie-o ou cancele o pedido.</li>
-                  <li>Proteja seu produto ao embalá-lo;</li>
-                  <li>Procure sempre responder as dúvidas.</li>
-                </ul>
+                <div className="mt-4 text-base text-gray-500">Dicas:
+                  <ul className="mt-4 list-disc ml-6">
+                    <li>Seu cliente está esperando pelo seu produto, envie-o ou cancele o pedido.</li>
+                    <li>Proteja seu produto ao embalá-lo;</li>
+                    <li>Procure sempre responder as dúvidas.</li>
+                  </ul>
+                </div>
               </BubbleCh>
             </Card.Body>
           </Card>
@@ -139,7 +142,7 @@ const App = () => {
                   r: 4
                 }, 
               ]}>
-                Essas são suas categorias com maior índice de atritos.
+                <div className="mt-4 text-base text-gray-500">Essas são suas categorias com maior índice de atritos.</div>
               </BubbleCh>
             </Card.Body>
           </Card>

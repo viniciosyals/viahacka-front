@@ -41,10 +41,7 @@ const Speedometer = ({ data, children }: Props) => {
           ctx.moveTo(0, -lineLength);
           ctx.lineTo(ch / 2.5, 0);
           ctx.lineTo(0, lineLength);
-          const needleGradient = ctx.createLinearGradient(0, 210, 210, 0);
-          needleGradient.addColorStop(0, colors.primary);
-          needleGradient.addColorStop(1, colors.secondary);
-          ctx.fillStyle = needleGradient;
+          ctx.fillStyle = colors.darkestNeutral;
           ctx.fill();
           ctx.rotate(-angle);
           ctx.translate(-cx, -cy);
