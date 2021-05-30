@@ -238,11 +238,10 @@ const App = () => {
   return (
     <div className="container mx-auto">
       <div>
-        Olá, vendedor!
-        <br />
-        <br />Fizemos uma análise nos seus pedidos! Veja os seus resultados:
+        <h2 className="text-xl px-8 text-gray-800 font-medium pt-8 pb-2">Olá, vendedor!</h2>
+        <h3 className="text-lg px-8 text-gray-700 font-medium pt-1 pb-2">Fizemos uma análise nos seus pedidos! Veja os seus resultados:</h3>
       </div>
-      <div className="grid grid-cols-4 gap-8 mt-8">
+      <div className="grid grid-cols-4 pb-8 px-8 pt-0 gap-8 mt-4">
         <Card col="span-1">
           <Card.Title>
             Visão geral dos pedidos
