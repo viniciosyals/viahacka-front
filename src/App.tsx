@@ -15,8 +15,8 @@ const linear = {
         backgroundColor: colors.primary,
         borderColor: (context: any) => {
           const { chart } = context;
-          const {ctx, chartArea} = chart;
-          
+          const { ctx, chartArea } = chart;
+
           if (!chartArea) {
             return null;
           }
@@ -90,7 +90,7 @@ const bubble = {
   options: {
     scales: {
       y: {
-          beginAtZero: true
+        beginAtZero: true
       },
       x: {
         beginAtZero: true
@@ -171,7 +171,7 @@ const doughnut = {
         const cx = cw / 2;
         const cy = ch - (ch / 4) + 13;
         const lineLength = 3;
-        
+
         ctx.translate(cx, cy);
         ctx.rotate(angle);
         ctx.beginPath();
@@ -205,8 +205,35 @@ const doughnut = {
     }
   }
 };
+
+const pedidosCriticos = [
+  {
+    id: '6545645',
+    idCompra: '54859574',
+    score: '0,95',
+    classificacao: 'Crítico',
+  },
+  {
+    id: '6548645',
+    idCompra: '85665235',
+    score: '0,86',
+    classificacao: 'Crítico',
+  },
+  {
+    id: '6548689',
+    idCompra: '78665235',
+    score: '0,76',
+    classificacao: 'Crítico',
+  },
+  {
+    id: '6998645',
+    idCompra: '85885235',
+    score: '0,89',
+    classificacao: 'Crítico',
+  },
+]
 const App = () => {
-  const [ loading, setLoading ] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   return (
     <div className="container mx-auto">
@@ -216,7 +243,7 @@ const App = () => {
         <br />Fizemos uma análise nos seus pedidos! Veja os seus resultados:
       </div>
       <div className="grid grid-cols-4 gap-8 mt-8">
-      <Card col="span-1">
+        <Card col="span-1">
           <Card.Title>
             Visão geral dos pedidos
           </Card.Title>
@@ -256,16 +283,75 @@ const App = () => {
             Principais categorias de pedidos com problemas
           </Card.Title>
           <Card.Body>
-          <Bubble type="bubble" data={bubble2.data} options={bubble.options} />
+            <Bubble type="bubble" data={bubble2.data} options={bubble.options} />
           Essas são suas categorias com maior índice de atritos.
           </Card.Body>
         </Card>
-        <Card col="span-4">
+        <Card col="span-3">
           <Card.Title>
             Pedidos críticos
           </Card.Title>
           <Card.Body>
-            asdasdsad
+            <div className="flex flex-col">
+              <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                  <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                    <table className="min-w-full divide-y divide-gray-200">
+                      <thead className="bg-gray-50">
+                        <tr>
+                          <th
+                            scope="col"
+                            className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                          >
+                            Número do Pedido
+                          </th>
+                          <th
+                            scope="col"
+                            className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                          >
+                            iD da Compra/Entrega
+                         </th>
+                          <th
+                            scope="col"
+                            className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                          >
+                            Score
+                          </th>
+                          <th
+                            scope="col"
+                            className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                          >
+                            Classificação
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody className="bg-white divide-y divide-gray-200">
+                        {pedidosCriticos.map((registros) => (
+                          <tr key={registros.id}>
+                            <td className="px-6 py-4 whitespace-nowrap">
+                              <div className="flex items-center">
+                                <div className="text-sm font-medium mr-4 text-gray-900">{registros.id}</div>
+                              </div>
+                            </td>
+                            <td className="px-6 py-4 whitespace-nowrap">
+                              <div className="text-sm font-medium text-gray-900">{registros.idCompra}</div>
+                            </td>
+                            <td className="px-6 py-4 whitespace-nowrap">
+                              <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-200 text-red-900">
+                                {registros.classificacao}
+                              </span>
+                            </td>
+                            <td className="px-6 py-4 whitespace-nowrap text-lef text-sm font-medium">
+                              {registros.score}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
           </Card.Body>
         </Card>
       </div>
