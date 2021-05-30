@@ -38,7 +38,7 @@ const Table = ({ data }: Props) => (
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
-                  {data.map((order) => (
+                  {data.map((order: any) => (
                     <tr key={order.id}>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex items-center">
