@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Navbar, Card, Linear, Speedometer, BubbleCh } from './components';
+import { Navbar, Card, Linear, Speedometer, BubbleCh, Table } from './components';
 import './App.css';
 
 const App = () => {
   const [ sellers, setSellers ] = useState<any[]>([]);
   const [ seller, setSeller ] = useState<any>();
   const [ loading, setLoading ] = useState(false);
+  const [ criticalOrders, setCriticalOrders ] = useState<any[]>([]);
 
   const handlerSeller = (sellerObj: any) => {
     setSeller(sellerObj.seller);
@@ -22,15 +23,27 @@ const App = () => {
       setLoading(true);
       // const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${30}`);
       // const data = await response.json();
+      setCriticalOrders([
+        {
+          id: 0,
+          idCompra: 0,
+          classificacao: 'xx',
+          score: 3
+        }, {
+          id: 1,
+          idCompra: 2,
+          classificacao: 'aaaaa',
+          score: 7
+        }
+      ])
       setLoading(false);
-      // setData(data.results);
     })();
   }, [seller]);
 
   return (
     <>
       <Navbar sellers={sellers} onChange={handlerSeller} />
-      <div className="container mx-auto">
+      <div className="container mx-auto mb-8">
         <div className="mt-4">
           <div className="text-lg">Olá, <span className="font-semibold">Vendedor!</span></div>
           <div className="text-base text-gray-500">Fizemos uma análise nos seus pedidos! Veja os seus resultados:</div>
@@ -134,8 +147,8 @@ const App = () => {
             <Card.Title>
               Pedidos críticos
             </Card.Title>
-            <Card.Body loading={loading}>
-              asdasdsad
+            <Card.Body loading={loading} full>
+              <Table data={criticalOrders} />
             </Card.Body>
           </Card>
         </div>

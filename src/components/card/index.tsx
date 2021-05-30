@@ -35,10 +35,10 @@ const Spinner = styled.svg.attrs({
   }
 `;
 
-Card.Body = ({ children, loading }: any) => (
+Card.Body = ({ children, loading, full }: any) => (
   <div className="relative">
     {loading ? <Spinner /> : ''}
-    <div className={`p-4 ${loading ? `invisible` : ''}`}>
+    <div className={`${full ? '' : 'p-4'} ${loading ? `invisible` : ''}`}>
       {children}
     </div>
   </div>
