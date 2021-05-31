@@ -1,29 +1,24 @@
-import { useEffect, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { Description } from './style';
 import { colors } from './constants';
 
 interface Props {
   data: any;
+  title: any;
   children: any;
 }
 
-const BarGh = ({ data, children }: Props) => {
+const BarCh = ({ data, title, children }: Props) => {
   const config = {
     data: {
-      labels: ['Motivos de cancelamento'],
-
-        datasets: [{
-          label: data[0].category,
-          backgroundColor: colors.transparentPrimary,
-          borderColor: colors.primary,
-          data: [data[0].quantity],
-        }, {
-          label: data[1].category,
-          backgroundColor: colors.transparentSecondary,
-          borderColor: colors.secondary,
-          data: [data[1].quantity],
-        }]
+      labels: data.map((d: any) => d.label),
+      datasets: [
+        {
+          label: title,
+          backgroundColor: [colors.transparentPrimary, colors.transparentSecondary, colors.transparentWarning, colors.transparentInfo],
+          data: data.map((d: any) => d.number),
+        }
+      ]
     },
     options: {
       scales: {
@@ -35,6 +30,11 @@ const BarGh = ({ data, children }: Props) => {
           },
         ],
       },
+      plugins: {
+        legend: {
+          display: false,
+        },
+      }
     }
   };
 
@@ -48,4 +48,4 @@ const BarGh = ({ data, children }: Props) => {
   )
 }
 
-export default BarGh;
+export default BarCh;

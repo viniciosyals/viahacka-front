@@ -7,7 +7,7 @@ const Table = ({ data }: Props) => (
     <div className="flex flex-col">
       <div className="-my-2 overflow-x-auto">
         <div className="py-2 align-middle inline-block min-w-full">
-          <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+          <div className="overflow-hidden border-gray-200 sm:rounded-lg">
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 <tr>
@@ -16,7 +16,7 @@ const Table = ({ data }: Props) => (
                     className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                   >
                     Número do Pedido
-                    </th>
+                  </th>
                   <th
                     scope="col"
                     className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
@@ -28,18 +28,18 @@ const Table = ({ data }: Props) => (
                     className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                   >
                     Score
-                    </th>
+                  </th>
                   <th
                     scope="col"
                     className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                   >
                     Classificação
-                    </th>
+                  </th>
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
                 {data.map((order: any) => (
-                  <tr key={order.id}>
+                  <tr key={order.idCompra}>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center">
                         <div className="text-sm font-medium mr-4 text-gray-900">{order.id}</div>
@@ -49,12 +49,12 @@ const Table = ({ data }: Props) => (
                       <div className="text-sm font-medium text-gray-900">{order.idCompra}</div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-200 text-red-900">
-                        {order.classificacao}
-                      </span>
+                      {order.score}%
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-lef text-sm font-medium">
-                      {order.score}
+                      <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-200 text-red-900 uppercase">
+                        {order.classificacao}
+                      </span>
                     </td>
                   </tr>
                 ))}

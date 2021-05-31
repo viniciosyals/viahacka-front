@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const Description = styled.div.attrs({
-  className: 'text-base text-gray-700 mt-2'
+  className: 'text-base text-gray-500 mt-4'
 })`
   & {
     

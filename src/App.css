@@ -21,3 +21,12 @@ body::-webkit-scrollbar-thumb:hover {
 .card-min-height {
     min-height: 150px;
 }
+.transparent-success {
+    color: rgb(162, 221, 33);
+}
+.transparent-warning {
+    color: rgb(255, 220, 66);
+}
+.transparent-error {
+    color: rgb(255, 80, 45);
+}

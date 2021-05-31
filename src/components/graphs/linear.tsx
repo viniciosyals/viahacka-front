@@ -17,8 +17,8 @@ const getGradient = (ctx: any, chartArea: any) => {
     width = chartWidth;
     height = chartHeight;
     gradient = ctx.createLinearGradient(0, chartArea.bottom, 0, chartArea.top);
-    gradient.addColorStop(0, colors.primary);
-    gradient.addColorStop(1, colors.secondary);
+    gradient.addColorStop(0, colors.secondary);
+    gradient.addColorStop(1, colors.primary);
   }
 
   return gradient;
@@ -27,11 +27,11 @@ const getGradient = (ctx: any, chartArea: any) => {
 const Linear = ({ data, children }: Props) => {
   const config = {
     data: {
-      labels: [data[0].label, data[1].label, data[2].label, data[3].label, data[4].label, data[5].label, data[6].label],
+      labels: data.map((d: any) => d.label),
       datasets: [
         {
-          label: 'Classificação das avaliações',
-          data: [data[0].number, data[1].number, data[2].number, data[3].number, data[4].number, data[5].number, data[6].number],
+          label: 'Classificação das avaliações (NPS Score)',
+          data: data.map((d: any) => d.number),
           fill: false,
           backgroundColor: colors.primary,
           borderColor: (context: any) => {

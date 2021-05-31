@@ -9,7 +9,6 @@ module.exports = {
     error: '#ff502d',
     transparentPrimary: 'rgba(106, 90, 255, 0.7)',
     transparentSecondary: 'rgba(0, 211, 195, 0.7)',
-    transparentNeutral: 'rgba(146, 148, 15, 0.7)',
     transparentSuccess: 'rgba(162, 221, 33, 0.7)',
     transparentInfo: 'rgba(53, 218, 255, 0.7)',
     transparentWarning: 'rgba(255, 220, 66, 0.7)',
